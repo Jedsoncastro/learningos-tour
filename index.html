@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tour do LearningOS</title>
+<meta name="description" content="Prévia das telas do LearningOS, do ecossistema Nenética, com dados fictícios.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--tinta:#14181d;--grafite:#272d33;--slate:#1c2129;--coral:#f26a48;--coral-2:#fd986e;--coral-deep:#b83a22;
+--papel:#fcfaf9;--pessego:#fbede7;--linha:#e8dfda;--texto-2:#5a626b;--claro:#f4efec;--claro-2:#b7bec6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--grafite);font:400 16px/1.6 Inter,system-ui,-apple-system,sans-serif}
+h1,h2,h3,.marca{font-family:Poppins,"Avenir Next",system-ui,sans-serif;line-height:1.15;letter-spacing:-.015em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.topo{background:var(--tinta);border-bottom:1px solid rgba(255,255,255,.08)}
+.topo .wrap{display:flex;align-items:center;gap:10px;min-height:64px}
+.marca{display:flex;align-items:center;gap:10px;color:#fff;font-weight:600;text-decoration:none}
+.hero{color:#fff;padding:56px 0 64px;background:radial-gradient(900px 480px at 80% 20%,rgba(242,106,72,.22),transparent 62%),var(--tinta)}
+.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+.eyebrow{color:var(--coral-2);font:700 .78rem/1.4 Inter,sans-serif;letter-spacing:.18em;text-transform:uppercase}
+.hero h1{font-size:clamp(2rem,5vw,3.3rem);font-weight:700;margin:12px 0 16px}
+.hero h1 em{font-style:normal;color:var(--coral-2)}
+.hero p{color:var(--claro-2);max-width:58ch;margin:0 0 12px}
+.logo{width:min(320px,70vw);height:auto;overflow:visible;justify-self:center;filter:drop-shadow(0 0 28px rgba(242,106,72,.35))}
+.aviso{display:inline-block;margin-top:8px;border:1px solid rgba(253,152,110,.4);border-radius:999px;padding:6px 14px;color:var(--claro);font-size:.9rem}
+nav.secoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+nav.secoes a{color:#fff;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;text-decoration:none;font-size:.92rem}
+nav.secoes a:hover,nav.secoes a:focus-visible{border-color:var(--coral-2);color:var(--coral-2)}
+section.bloco{padding:56px 0}
+section.bloco:nth-of-type(even){background:var(--pessego)}
+section.bloco .eyebrow{color:var(--coral-deep)}
+section.bloco h2{font-size:clamp(1.5rem,3vw,2rem);margin:6px 0 24px}
+.passo{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start;padding:24px 0;border-top:1px solid var(--linha)}
+.passo:first-of-type{border-top:0}
+.num{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;color:#fff;font:700 .95rem Poppins,sans-serif;
+background:linear-gradient(135deg,#f96849,#fd986e)}
+.passo h3{font-size:1.2rem;margin:12px 0 8px}
+.passo p{margin:0;color:var(--texto-2)}
+.passo a.foto{display:block;border:1px solid var(--linha);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 12px 32px rgba(20,24,29,.08)}
+.passo img{display:block;width:100%;height:auto}
+footer{background:var(--tinta);color:var(--claro-2);padding:40px 0;font-size:.92rem}
+footer strong{color:#fff}
+a:focus-visible{outline:3px solid rgba(242,106,72,.6);outline-offset:3px}
+@media (max-width:820px){.hero .wrap,.passo{grid-template-columns:1fr}.logo{order:-1;width:200px}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><a class="marca" href="#"><img src="icone.png" alt="" width="34" height="31">Nenética · LearningOS</a></div></header>
+<main>
+<section class="hero"><div class="wrap">
+  <div>
+    <span class="eyebrow">Ecossistema Nenética · prévia</span>
+    <h1>Um passeio pelo <em>LearningOS</em></h1>
+    <p>As telas reais do app, na ordem em que um aluno usa: criar a conta, estudar um material,
+    revisar com cartões e se preparar para a prova.</p>
+    <span class="aviso">Simulação com conta e dados fictícios. As respostas de IA são simuladas.</span>
+    <nav class="secoes" aria-label="Partes do tour"><a href="#s1">Entrar e conta</a><a href="#s2">Estudar um material</a><a href="#s3">Cartões e revisão</a><a href="#s4">Preparar para a prova</a></nav>
+  </div>
+  <svg class="logo" viewBox="0 0 400 387" role="img" aria-label="Logo da Nenética">
+  <defs>
+    <radialGradient id="b" cx="38%" cy="35%" r="70%"><stop offset="0%" stop-color="#ff8a66"/><stop offset="60%" stop-color="#fb6448"/><stop offset="100%" stop-color="#ef5238"/></radialGradient>
+    <radialGradient id="g"><stop offset="0%" stop-color="#fd986e" stop-opacity=".55"/><stop offset="100%" stop-color="#fd986e" stop-opacity="0"/></radialGradient>
+    <clipPath id="t"><polygon points="-688,677 1073,-271 599,-1151 -1162,-203"/></clipPath>
+    <mask id="m" maskUnits="userSpaceOnUse" x="-60" y="-60" width="520" height="507"><rect x="-60" y="-60" width="520" height="507" fill="#fff"/><g clip-path="url(#t)"><image href="icone-silhueta.png" width="400" height="387"/></g></mask>
+  </defs>
+  <image href="icone-centro-sem-bolinha.png" width="400" height="387"/>
+  <circle cx="394.5" cy="227" r="7.4" fill="#d6cbc6"/><circle cx="324.5" cy="389" r="4.5" fill="#fcaf9e"/>
+  <g mask="url(#m)">
+    <circle r="38" fill="url(#g)"><animateMotion dur="9s" repeatCount="indefinite" path="M 340.1 74.8 A 213 96.7 -28.3 1 1 45.4 331.6 A 213 96.7 -28.3 1 1 340.1 74.8 Z"/></circle>
+    <circle r="21" fill="url(#b)"><animateMotion dur="9s" repeatCount="indefinite" path="M 340.1 74.8 A 213 96.7 -28.3 1 1 45.4 331.6 A 213 96.7 -28.3 1 1 340.1 74.8 Z"/></circle>
+  </g>
+</svg>
+</div></section>
+<section class="bloco" id="s1" aria-labelledby="t1"><div class="wrap"><span class="eyebrow">Parte 1</span><h2 id="t1">Entrar e conta</h2><article class="passo">
+  <div><span class="num" aria-hidden="true">1</span>
+    <h3>A página inicial</h3><p>A porta de entrada do LearningOS, com a identidade Nenética.</p></div>
+  <a class="foto" href="telas/01.png" aria-label="Abrir a tela 1 em tamanho real">
+    <img src="telas/01.png" alt="Tela: A página inicial" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">2</span>
+    <h3>Criar a conta</h3><p>E-mail, senha e a confirmação obrigatória: 18 anos ou mais e leitura dos Termos e da Política de privacidade.</p></div>
+  <a class="foto" href="telas/02.png" aria-label="Abrir a tela 2 em tamanho real">
+    <img src="telas/02.png" alt="Tela: Criar a conta" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">3</span>
+    <h3>Confira seu e-mail</h3><p>A conta só funciona depois de clicar no link que chega por e-mail.</p></div>
+  <a class="foto" href="telas/03.png" aria-label="Abrir a tela 3 em tamanho real">
+    <img src="telas/03.png" alt="Tela: Confira seu e-mail" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">4</span>
+    <h3>Confirmar o e-mail</h3><p>A tela mostra de qual conta é o link antes do botão. Se o link for de outra conta, ninguém entra.</p></div>
+  <a class="foto" href="telas/04.png" aria-label="Abrir a tela 4 em tamanho real">
+    <img src="telas/04.png" alt="Tela: Confirmar o e-mail" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">5</span>
+    <h3>Hoje, ainda vazio</h3><p>Aqui você começa todo dia. Sem nada ainda, a tela pede para criar um espaço.</p></div>
+  <a class="foto" href="telas/05.png" aria-label="Abrir a tela 5 em tamanho real">
+    <img src="telas/05.png" alt="Tela: Hoje, ainda vazio" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">26</span>
+    <h3>Esqueci minha senha</h3><p>O link chega por e-mail. A resposta é a mesma, exista ou não a conta.</p></div>
+  <a class="foto" href="telas/26.png" aria-label="Abrir a tela 26 em tamanho real">
+    <img src="telas/26.png" alt="Tela: Esqueci minha senha" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">27</span>
+    <h3>Política de privacidade</h3><p>Termos e Política em linguagem simples, ainda como versão preliminar.</p></div>
+  <a class="foto" href="telas/27.png" aria-label="Abrir a tela 27 em tamanho real">
+    <img src="telas/27.png" alt="Tela: Política de privacidade" loading="lazy" width="1280"></a>
+</article></div></section><section class="bloco" id="s2" aria-labelledby="t2"><div class="wrap"><span class="eyebrow">Parte 2</span><h2 id="t2">Estudar um material</h2><article class="passo">
+  <div><span class="num" aria-hidden="true">6</span>
+    <h3>Criar um espaço</h3><p>Um espaço é uma matéria ou um objetivo, com os minutos que você tem por dia.</p></div>
+  <a class="foto" href="telas/06.png" aria-label="Abrir a tela 6 em tamanho real">
+    <img src="telas/06.png" alt="Tela: Criar um espaço" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">7</span>
+    <h3>Dentro do espaço</h3><p>Materiais, cartões, edital, mapa, simulado e professor do mesmo assunto.</p></div>
+  <a class="foto" href="telas/07.png" aria-label="Abrir a tela 7 em tamanho real">
+    <img src="telas/07.png" alt="Tela: Dentro do espaço" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">8</span>
+    <h3>Enviar o material</h3><p>PDF, texto ou foto. O arquivo entra na fila e é dividido em seções.</p></div>
+  <a class="foto" href="telas/08.png" aria-label="Abrir a tela 8 em tamanho real">
+    <img src="telas/08.png" alt="Tela: Enviar o material" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">9</span>
+    <h3>As seções do material</h3><p>O material pronto, dividido em seções para estudar uma de cada vez.</p></div>
+  <a class="foto" href="telas/09.png" aria-label="Abrir a tela 9 em tamanho real">
+    <img src="telas/09.png" alt="Tela: As seções do material" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">10</span>
+    <h3>Seção preparada</h3><p>Resumo, questões e cartões feitos a partir do texto, sempre com a citação do trecho.</p></div>
+  <a class="foto" href="telas/10.png" aria-label="Abrir a tela 10 em tamanho real">
+    <img src="telas/10.png" alt="Tela: Seção preparada" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">11</span>
+    <h3>Hoje, com o plano do dia</h3><p>O app diz o que estudar e o que revisar hoje, dentro do seu tempo.</p></div>
+  <a class="foto" href="telas/11.png" aria-label="Abrir a tela 11 em tamanho real">
+    <img src="telas/11.png" alt="Tela: Hoje, com o plano do dia" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">12</span>
+    <h3>Sessão de estudo: responder</h3><p>Primeiro você tenta lembrar, sem olhar. Isso fixa mais do que reler.</p></div>
+  <a class="foto" href="telas/12.png" aria-label="Abrir a tela 12 em tamanho real">
+    <img src="telas/12.png" alt="Tela: Sessão de estudo: responder" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">13</span>
+    <h3>Conferir e dar a nota</h3><p>A resposta certa aparece e você diz como foi: errei, difícil, bom ou fácil.</p></div>
+  <a class="foto" href="telas/13.png" aria-label="Abrir a tela 13 em tamanho real">
+    <img src="telas/13.png" alt="Tela: Conferir e dar a nota" loading="lazy" width="1280"></a>
+</article></div></section><section class="bloco" id="s3" aria-labelledby="t3"><div class="wrap"><span class="eyebrow">Parte 3</span><h2 id="t3">Cartões e revisão</h2><article class="passo">
+  <div><span class="num" aria-hidden="true">14</span>
+    <h3>Revisar: tente lembrar</h3><p>A revisão espaçada traz cada cartão no dia certo para não esquecer.</p></div>
+  <a class="foto" href="telas/14.png" aria-label="Abrir a tela 14 em tamanho real">
+    <img src="telas/14.png" alt="Tela: Revisar: tente lembrar" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">15</span>
+    <h3>Revisar: como foi lembrar?</h3><p>Quatro botões, como no Anki, com o próximo intervalo em cada um. Dá para desfazer.</p></div>
+  <a class="foto" href="telas/15.png" aria-label="Abrir a tela 15 em tamanho real">
+    <img src="telas/15.png" alt="Tela: Revisar: como foi lembrar?" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">16</span>
+    <h3>Criar cartões</h3><p>Cartões de pergunta e resposta, com lacunas, imagem e formatação, como no Anki.</p></div>
+  <a class="foto" href="telas/16.png" aria-label="Abrir a tela 16 em tamanho real">
+    <img src="telas/16.png" alt="Tela: Criar cartões" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">17</span>
+    <h3>O navegador de cartões</h3><p>Procure, filtre e mude vários cartões de uma vez. O aviso no topo leva à triagem.</p></div>
+  <a class="foto" href="telas/17.png" aria-label="Abrir a tela 17 em tamanho real">
+    <img src="telas/17.png" alt="Tela: O navegador de cartões" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">18</span>
+    <h3>Triagem grátis: cartões que precisam de atenção</h3><p>Sem IA e sem custo: pergunta longa, resposta longa, mais de uma pergunta ou cartão esquecido muitas vezes, com a dica do que fazer.</p></div>
+  <a class="foto" href="telas/18.png" aria-label="Abrir a tela 18 em tamanho real">
+    <img src="telas/18.png" alt="Tela: Triagem grátis: cartões que precisam de atenção" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">19</span>
+    <h3>Opções de revisão</h3><p>Cartões novos por dia, quanto você quer lembrar, passos e sanguessugas.</p></div>
+  <a class="foto" href="telas/19.png" aria-label="Abrir a tela 19 em tamanho real">
+    <img src="telas/19.png" alt="Tela: Opções de revisão" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">20</span>
+    <h3>Estatísticas</h3><p>Previsão de revisões, histórico e quanto você está lembrando. Exporta para o Anki.</p></div>
+  <a class="foto" href="telas/20.png" aria-label="Abrir a tela 20 em tamanho real">
+    <img src="telas/20.png" alt="Tela: Estatísticas" loading="lazy" width="1280"></a>
+</article></div></section><section class="bloco" id="s4" aria-labelledby="t4"><div class="wrap"><span class="eyebrow">Parte 4</span><h2 id="t4">Preparar para a prova</h2><article class="passo">
+  <div><span class="num" aria-hidden="true">21</span>
+    <h3>Progresso</h3><p>O resumo da semana: estudo, revisões e o que ficou para trás.</p></div>
+  <a class="foto" href="telas/21.png" aria-label="Abrir a tela 21 em tamanho real">
+    <img src="telas/21.png" alt="Tela: Progresso" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">22</span>
+    <h3>Edital e cobertura</h3><p>Cole o edital e veja quais tópicos já têm material e quais faltam.</p></div>
+  <a class="foto" href="telas/22.png" aria-label="Abrir a tela 22 em tamanho real">
+    <img src="telas/22.png" alt="Tela: Edital e cobertura" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">23</span>
+    <h3>Fazendo o simulado</h3><p>Prova com tempo, com as questões do seu material.</p></div>
+  <a class="foto" href="telas/23.png" aria-label="Abrir a tela 23 em tamanho real">
+    <img src="telas/23.png" alt="Tela: Fazendo o simulado" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">24</span>
+    <h3>Resultado do simulado</h3><p>Nota, tempo e acertos por assunto, com a correção explicada.</p></div>
+  <a class="foto" href="telas/24.png" aria-label="Abrir a tela 24 em tamanho real">
+    <img src="telas/24.png" alt="Tela: Resultado do simulado" loading="lazy" width="1280"></a>
+</article><article class="passo">
+  <div><span class="num" aria-hidden="true">25</span>
+    <h3>Caderno de erros</h3><p>Tudo o que você errou num lugar só, para revisar só os erros.</p></div>
+  <a class="foto" href="telas/25.png" aria-label="Abrir a tela 25 em tamanho real">
+    <img src="telas/25.png" alt="Tela: Caderno de erros" loading="lazy" width="1280"></a>
+</article></div></section>
+</main>
+<footer><div class="wrap"><strong>Nenética · LearningOS</strong> · 27 telas capturadas em 24/11/2026.
+Versão em desenvolvimento; textos legais ainda preliminares.</div></footer>
+<script>
+(function(){var m=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)');
+function a(){document.querySelectorAll('svg.logo').forEach(function(s){if(m&&m.matches){s.pauseAnimations();s.setCurrentTime(0);}else{s.unpauseAnimations();}});}
+a();if(m&&m.addEventListener)m.addEventListener('change',a);})();
+</script>
+</body>
+</html>
