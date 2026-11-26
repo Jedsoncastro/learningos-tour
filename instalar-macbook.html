@@ -5,222 +5,360 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
 <title>Instalar no MacBook Air</title>
+<meta name="description" content="6 passos, com botões de copiar, para deixar o MacBook Air igual ao Mac mini.">
+<meta property="og:title" content="LearningOS no MacBook Air">
+<meta property="og:description" content="6 passos com botões de copiar. Abra no MacBook Air e vá clicando.">
+<meta property="og:image" content="https://jedsoncastro.github.io/learningos-tour/icone.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: uma coluna de leitura, passos numerados em ordem real, comandos em blocos com botão de copiar */
 :root {
-  --bg: #faf8f6;
-  --surface: #ffffff;
-  --fg: #23262b;
-  --muted: #5d6168;
-  --line: #ecdcd6;
-  --accent: #c0391b;
-  --accent-soft: #fbece7;
-  --code-bg: #1f2227;
-  --code-fg: #f1ede9;
-  --ok: #2f7a4b;
-  --ok-soft: #e6f3ea;
-  --warn: #9a5b00;
-  --warn-soft: #fdf3e2;
+  --bg: #faf8f6; --surface: #ffffff; --fg: #23262b; --muted: #5d6168; --line: #ecdcd6;
+  --accent: #c0391b; --accent-2: #e0603f; --accent-soft: #fbece7;
+  --code-bg: #1f2227; --code-fg: #f1ede9;
+  --ok: #2f7a4b; --ok-soft: #e6f3ea; --warn: #9a5b00; --warn-soft: #fdf3e2;
+  --mini: #2f5fa8; --mini-soft: #e8eff9;
+  --shadow: 0 1px 2px rgba(35,38,43,.05), 0 8px 24px rgba(35,38,43,.06);
   --font-display: "Poppins", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #17191c; --surface: #202328; --fg: #ece8e4; --muted: #a8abb0; --line: #3a3330;
-    --accent: #f0714f; --accent-soft: #33221d; --code-bg: #0f1113; --code-fg: #f1ede9;
-    --ok: #6cc890; --ok-soft: #1d2c23; --warn: #f0b85c; --warn-soft: #2e2618;
+    --bg: #141619; --surface: #1d2024; --fg: #ece8e4; --muted: #a8abb0; --line: #34302e;
+    --accent: #f0714f; --accent-2: #f39373; --accent-soft: #33221d; --code-bg: #0d0f11; --code-fg: #f1ede9;
+    --ok: #6cc890; --ok-soft: #1b2a21; --warn: #f0b85c; --warn-soft: #2d2517;
+    --mini: #8ab4f2; --mini-soft: #1c2533; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #17191c; --surface: #202328; --fg: #ece8e4; --muted: #a8abb0; --line: #3a3330;
-  --accent: #f0714f; --accent-soft: #33221d; --code-bg: #0f1113; --code-fg: #f1ede9;
-  --ok: #6cc890; --ok-soft: #1d2c23; --warn: #f0b85c; --warn-soft: #2e2618;
+  --bg: #141619; --surface: #1d2024; --fg: #ece8e4; --muted: #a8abb0; --line: #34302e;
+  --accent: #f0714f; --accent-2: #f39373; --accent-soft: #33221d; --code-bg: #0d0f11; --code-fg: #f1ede9;
+  --ok: #6cc890; --ok-soft: #1b2a21; --warn: #f0b85c; --warn-soft: #2d2517;
+  --mini: #8ab4f2; --mini-soft: #1c2533; --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
   color-scheme: dark;
 }
-body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
-.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 40px; }
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
-h1 { font-size: 2rem; }
-h2 { font-size: 1.35rem; display: flex; align-items: baseline; gap: 12px; }
-h3 { font-size: 1.05rem; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left, 0px)) 72px max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; margin: 0; text-wrap: balance; }
 p { margin: 0; }
-.eyebrow { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-.lead { color: var(--muted); max-width: 62ch; }
-header { display: flex; flex-direction: column; gap: 12px; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip { font-size: .85rem; padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); border: 1px solid var(--line); }
-section { display: flex; flex-direction: column; gap: 16px; }
-.num { font-family: var(--font-display); color: var(--accent); font-size: 1rem; min-width: 1.6em; }
-ol.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; counter-reset: s; }
-ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: 4px 10px; }
-ol.steps > li::before { content: counter(s); grid-row: 1 / span 3; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: .85rem; display: grid; place-items: center; margin-top: 1px; }
-ol.steps > li > * { grid-column: 2; min-width: 0; }
-.k { font-family: var(--font-mono); font-size: .85em; padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line); background: var(--surface); white-space: nowrap; }
 b, strong { font-weight: 600; }
-.ui { font-weight: 600; color: var(--accent); }
-.cmd { background: var(--code-bg); color: var(--code-fg); border-radius: 10px; display: flex; align-items: flex-start; gap: 10px; padding: 12px 12px 12px 16px; margin-top: 6px; }
-.cmd code { font-family: var(--font-mono); font-size: .88rem; flex: 1; min-width: 0; overflow-x: auto; white-space: pre; padding-block: 6px; }
-.copy { font: 600 .8rem var(--font-body); color: var(--code-fg); background: transparent; border: 1px solid #5b5f66; border-radius: 6px; padding: 6px 10px; cursor: pointer; flex-shrink: 0; }
-.copy:hover { border-color: var(--code-fg); }
-.copy:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.note { border-radius: 10px; padding: 12px 16px; font-size: .95rem; }
+a { color: var(--accent); }
+
+/* Barra de progresso fixa */
+.bar { position: sticky; top: 0; z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar-in { max-width: 720px; margin: 0 auto; padding: 10px 16px; display: flex; align-items: center; gap: 12px; }
+.bar-label { font-size: .85rem; font-weight: 600; white-space: nowrap; }
+.track { flex: 1; height: 8px; border-radius: 99px; background: var(--accent-soft); overflow: hidden; }
+.fill { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .4s ease; }
+.reset { font: 500 .78rem var(--font-body); color: var(--muted); background: none; border: 0; cursor: pointer; padding: 4px; text-decoration: underline; }
+
+header.hero { padding: 36px 0 24px; display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+h1 { font-size: 2.1rem; }
+.lead { color: var(--muted); max-width: 60ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: .82rem; padding: 4px 12px; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; font-size: .85rem; color: var(--muted); align-items: center; }
+
+.dev { display: inline-flex; align-items: center; gap: 6px; font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+.dev.air { background: var(--accent-soft); color: var(--accent); }
+.dev.mini { background: var(--mini-soft); color: var(--mini); }
+
+/* Cartões dos passos */
+.steps { display: flex; flex-direction: column; gap: 14px; }
+.step { scroll-margin-top: 64px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); overflow: hidden; transition: border-color .2s; }
+.step.open { border-color: var(--accent); }
+.step.done { border-color: var(--ok); }
+.step-head { width: 100%; display: grid; grid-template-columns: 44px 1fr auto; align-items: center; gap: 12px; padding: 16px; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.badge { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; background: var(--accent-soft); color: var(--accent); transition: background .2s, color .2s; }
+.step.done .badge { background: var(--ok); color: #fff; }
+.step-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.step-title h2 { font-size: 1.08rem; }
+.step-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .82rem; color: var(--muted); }
+.chev { width: 22px; height: 22px; color: var(--muted); transition: transform .25s; }
+.step.open .chev { transform: rotate(180deg); }
+.step-body { display: none; padding: 0 16px 18px 72px; flex-direction: column; gap: 14px; }
+.step.open .step-body { display: flex; }
+@media (max-width: 520px) { .step-body { padding-left: 16px; } h1 { font-size: 1.7rem; } }
+
+ol.sub { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 10px; }
+ol.sub li::marker { color: var(--accent); font-weight: 600; }
+.k { font-family: var(--font-mono); font-size: .84em; padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line); background: var(--bg); white-space: nowrap; }
+
+.cmd { background: var(--code-bg); color: var(--code-fg); border-radius: 12px; display: flex; align-items: stretch; overflow: hidden; }
+.cmd code { font-family: var(--font-mono); font-size: .84rem; flex: 1; min-width: 0; overflow-x: auto; white-space: pre; padding: 14px 16px; }
+.copy { font: 600 .85rem var(--font-body); color: #fff; background: var(--accent); border: 0; padding: 0 18px; cursor: pointer; flex-shrink: 0; min-width: 96px; transition: background .2s; }
+.copy:hover { background: var(--accent-2); }
+.copy.ok { background: var(--ok); }
+
+.note { border-radius: 12px; padding: 12px 14px; font-size: .92rem; }
 .note.ok { background: var(--ok-soft); border-left: 4px solid var(--ok); }
 .note.warn { background: var(--warn-soft); border-left: 4px solid var(--warn); }
-.check { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
-.check label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
-.check input { margin-top: 5px; accent-color: var(--accent); width: 18px; height: 18px; flex-shrink: 0; }
-.check input:checked + span { color: var(--muted); text-decoration: line-through; }
-.trouble { width: 100%; border-collapse: collapse; font-size: .95rem; }
-.trouble-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
-.trouble th, .trouble td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.trouble th { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.trouble tr:last-child td { border-bottom: 0; }
-.trouble td:first-child { width: 42%; }
-.say { font-style: italic; color: var(--muted); }
-footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 16px; }
-@media (max-width: 520px) { h1 { font-size: 1.6rem; } .trouble td:first-child { width: auto; } }
-</style>
+.note.mini { background: var(--mini-soft); border-left: 4px solid var(--mini); }
 
-<style>html{-webkit-text-size-adjust:100%}body{margin:0}*{box-sizing:border-box}</style>
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { font: 600 .92rem var(--font-body); border-radius: 10px; padding: 11px 18px; cursor: pointer; border: 1px solid var(--line); background: var(--surface); color: var(--fg); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn.primary { background: var(--ok); border-color: var(--ok); color: #fff; }
+.btn.primary:hover { filter: brightness(1.06); }
+
+details.faq { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0 16px; }
+details.faq + details.faq { margin-top: 8px; }
+details.faq summary { cursor: pointer; padding: 14px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+details.faq summary::-webkit-details-marker { display: none; }
+details.faq summary::after { content: "+"; color: var(--accent); font-size: 1.2rem; line-height: 1; }
+details.faq[open] summary::after { content: "\2212"; }
+details.faq > p { padding-bottom: 14px; color: var(--muted); }
+
+section.block { margin-top: 36px; display: flex; flex-direction: column; gap: 14px; }
+section.block h2 { font-size: 1.3rem; }
+
+.finish { display: none; text-align: center; padding: 28px 20px; border-radius: 16px; background: var(--ok-soft); border: 1px solid var(--ok); margin-top: 14px; }
+.finish.show { display: block; }
+.finish h3 { font-size: 1.3rem; margin-bottom: 6px; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { margin-top: 40px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
 </head>
 <body>
+
+<div class="bar" role="region" aria-label="Progresso">
+  <div class="bar-in">
+    <span class="bar-label" id="progLabel">0 de 6 passos</span>
+    <div class="track" aria-hidden="true"><div class="fill" id="progFill"></div></div>
+    <button class="reset" type="button" id="reset">Recomeçar</button>
+  </div>
+</div>
+
 <div class="wrap">
-  <header>
-    <span class="eyebrow">Uma vez em cada Mac</span>
-    <h1>Instalar o LearningOS no MacBook Air</h1>
-    <p class="lead">Passo a passo para deixar o MacBook Air igual ao Mac mini: rodar o app com seus materiais e continuar construindo o projeto pelos dois. O código fica no GitHub e passa de um Mac para o outro.</p>
-    <div class="facts">
-      <span class="chip">30 a 60 minutos, quase tudo download</span>
-      <span class="chip">Pede a senha do Mac algumas vezes</span>
-      <span class="chip">Script testado no Mac mini em 26/11/2026</span>
+  <header class="hero">
+    <span class="eyebrow">LearningOS no MacBook Air</span>
+    <h1>Deixe o MacBook Air igual ao Mac mini</h1>
+    <p class="lead">Abra esta página <b>no MacBook Air</b>. Toque em cada passo, aperte os botões <b>Copiar</b>, cole no Terminal e, no fim do passo, aperte <b>Concluí</b>. A página guarda onde você parou.</p>
+    <div class="chips">
+      <span class="chip">30 a 60 minutos</span>
+      <span class="chip">Quase tudo é esperar download</span>
+      <span class="chip">Uma vez só</span>
     </div>
+    <div class="legend">Onde fazer cada passo: <span class="dev air">MacBook Air</span> <span class="dev mini">Mac mini</span></div>
   </header>
 
-  <section aria-labelledby="antes">
-    <h2 id="antes">Antes de começar</h2>
-    <div class="check" role="group" aria-label="Lista do que preparar">
-      <label><input type="checkbox" data-k="i1"><span>MacBook Air no carregador, com internet boa e uns 15 GB livres.</span></label>
-      <label><input type="checkbox" data-k="i2"><span>Os dois Macs ligados, perto um do outro e na mesma conta Apple (para copiar a chave da IA de um para o outro).</span></label>
-      <label><input type="checkbox" data-k="i3"><span>Saber a senha do MacBook Air. Quando o Terminal pedir senha, ela não aparece enquanto você digita: é normal, digite e aperte <span class="k">Enter</span>.</span></label>
-    </div>
-  </section>
+  <div class="steps" id="steps">
 
-  <section aria-labelledby="brew">
-    <h2 id="brew"><span class="num">1</span>Instalar o Homebrew (no Air)</h2>
-    <p class="lead">O Homebrew é o "instalador de programas" que o script usa para baixar o resto.</p>
-    <ol class="steps">
-      <li><p>Aperte <span class="k">Cmd</span> + <span class="k">Espaço</span>, digite <b>Terminal</b> e aperte <span class="k">Enter</span>.</p></li>
-      <li><p>Cole este comando e aperte <span class="k">Enter</span>. Ele pede a senha do Mac e depois <span class="k">Enter</span> para confirmar.</p>
-        <div class="cmd"><code id="c1">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code><button class="copy" type="button" data-target="c1">Copiar</button></div>
-        <p>Leva de 5 a 15 minutos. Pode instalar também as "Command Line Tools" da Apple: aceite.</p></li>
-      <li><p>Quando terminar, cole este outro comando para o Terminal passar a enxergar o Homebrew:</p>
-        <div class="cmd"><code id="c2">echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' &gt;&gt; ~/.zprofile &amp;&amp; eval "$(/opt/homebrew/bin/brew shellenv)" &amp;&amp; brew --version</code><button class="copy" type="button" data-target="c2">Copiar</button></div>
-        <p>Deu certo se aparecer <b>Homebrew</b> e um número de versão.</p></li>
-    </ol>
-  </section>
+    <article class="step" data-step="0">
+      <button class="step-head" type="button" aria-expanded="false">
+        <span class="badge">1</span>
+        <span class="step-title"><h2>Abrir o Terminal</h2><span class="step-meta"><span class="dev air">MacBook Air</span> 10 segundos</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="step-body">
+        <ol class="sub">
+          <li>Aperte <span class="k">Cmd</span> + <span class="k">Espaço</span> (abre a busca do Mac).</li>
+          <li>Digite <b>Terminal</b> e aperte <span class="k">Enter</span>. Abre uma janela de texto.</li>
+          <li>Deixe essa janela aberta ao lado desta página até o fim.</li>
+        </ol>
+        <div class="note ok">Quando o Terminal pedir a <b>senha do Mac</b>, ela não aparece enquanto você digita. É normal: digite e aperte <span class="k">Enter</span>.</div>
+        <div class="actions"><button class="btn primary done-btn" type="button">Concluí, próximo passo</button></div>
+      </div>
+    </article>
 
-  <section aria-labelledby="github">
-    <h2 id="github"><span class="num">2</span>Entrar no GitHub (no Air)</h2>
-    <p class="lead">O projeto é privado. Sem este login, o Air não consegue baixar o código.</p>
-    <ol class="steps">
-      <li><p>Cole e aperte <span class="k">Enter</span>:</p>
-        <div class="cmd"><code id="c3">brew install gh &amp;&amp; gh auth login</code><button class="copy" type="button" data-target="c3">Copiar</button></div></li>
-      <li><p>Responda assim, usando as setas e <span class="k">Enter</span>: <b>GitHub.com</b>, depois <b>HTTPS</b>, depois <b>Yes</b>, depois <b>Login with a web browser</b>.</p></li>
-      <li><p>O Terminal mostra um código de 8 letras. Aperte <span class="k">Enter</span>, o navegador abre: entre na sua conta do GitHub, cole o código e autorize.</p></li>
-    </ol>
-  </section>
+    <article class="step" data-step="1">
+      <button class="step-head" type="button" aria-expanded="false">
+        <span class="badge">2</span>
+        <span class="step-title"><h2>Instalar o Homebrew</h2><span class="step-meta"><span class="dev air">MacBook Air</span> 5 a 15 minutos</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="step-body">
+        <p>O Homebrew é o "instalador de programas" que baixa o resto sozinho.</p>
+        <ol class="sub">
+          <li>Copie, cole no Terminal (<span class="k">Cmd</span> + <span class="k">V</span>) e aperte <span class="k">Enter</span>. Ele pede a senha e depois outro <span class="k">Enter</span>.
+            <div class="cmd" style="margin-top:8px"><code id="c1">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code><button class="copy" type="button" data-target="c1">Copiar</button></div>
+          </li>
+          <li>Se aparecer uma janela da Apple pedindo para instalar "ferramentas de linha de comando", aceite e espere.</li>
+          <li>Quando o Terminal voltar a ficar parado, copie e cole este segundo comando:
+            <div class="cmd" style="margin-top:8px"><code id="c2">echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' &gt;&gt; ~/.zprofile &amp;&amp; eval "$(/opt/homebrew/bin/brew shellenv)" &amp;&amp; brew --version</code><button class="copy" type="button" data-target="c2">Copiar</button></div>
+          </li>
+        </ol>
+        <div class="note ok">Deu certo se aparecer <b>Homebrew</b> seguido de um número.</div>
+        <div class="actions"><button class="btn primary done-btn" type="button">Concluí, próximo passo</button></div>
+      </div>
+    </article>
 
-  <section aria-labelledby="chave">
-    <h2 id="chave"><span class="num">3</span>Copiar a chave da IA (no Mac mini)</h2>
-    <p class="lead">A chave da IA não fica no GitHub, de propósito. Este comando copia a chave do Mac mini para a área de transferência, e ela aparece no Air pela mesma conta Apple, sem criar arquivo nenhum.</p>
-    <ol class="steps">
-      <li><p><b>No Mac mini</b>, abra o Terminal, cole e aperte <span class="k">Enter</span>. Não aparece nada na tela: é normal.</p>
-        <div class="cmd"><code id="c4">grep '^ANTHROPIC_API_KEY=' ~/Developer/learningos/.env | cut -d= -f2- | pbcopy</code><button class="copy" type="button" data-target="c4">Copiar</button></div></li>
-      <li><p>Faça o passo 4 logo em seguida, em até 2 minutos. Depois de colar no Air, copie qualquer outra coisa no Mac mini para a chave sair da área de transferência.</p></li>
-    </ol>
-    <div class="note warn">Se a cópia não passar de um Mac para o outro, confira se os dois estão com Bluetooth, Wi-Fi e Handoff ligados (Ajustes do Sistema, Geral, AirDrop e Handoff). Ou pule a chave: o app funciona com IA simulada e dá para colocar a chave depois.</div>
-  </section>
+    <article class="step" data-step="2">
+      <button class="step-head" type="button" aria-expanded="false">
+        <span class="badge">3</span>
+        <span class="step-title"><h2>Entrar no GitHub</h2><span class="step-meta"><span class="dev air">MacBook Air</span> 3 minutos</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="step-body">
+        <p>O projeto é privado. Sem este login, o Air não consegue baixar o código.</p>
+        <div class="cmd"><code id="c3">brew install gh &amp;&amp; gh auth login</code><button class="copy" type="button" data-target="c3">Copiar</button></div>
+        <ol class="sub">
+          <li>Responda com as setas e <span class="k">Enter</span>, nesta ordem: <b>GitHub.com</b>, <b>HTTPS</b>, <b>Yes</b>, <b>Login with a web browser</b>.</li>
+          <li>O Terminal mostra um código de 8 letras. Aperte <span class="k">Enter</span>: o navegador abre.</li>
+          <li>Entre na sua conta do GitHub, cole o código e clique em <b>Authorize</b>.</li>
+        </ol>
+        <div class="note ok">Deu certo se o Terminal mostrar <b>Logged in as</b> e o seu usuário.</div>
+        <div class="actions"><button class="btn primary done-btn" type="button">Concluí, próximo passo</button></div>
+      </div>
+    </article>
 
-  <section aria-labelledby="instalar">
-    <h2 id="instalar"><span class="num">4</span>Baixar o projeto e instalar tudo (no Air)</h2>
-    <ol class="steps">
-      <li><p>Cole este comando inteiro e aperte <span class="k">Enter</span>:</p>
+    <article class="step" data-step="3">
+      <button class="step-head" type="button" aria-expanded="false">
+        <span class="badge">4</span>
+        <span class="step-title"><h2>Copiar a chave da IA</h2><span class="step-meta"><span class="dev mini">Mac mini</span> 30 segundos</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="step-body">
+        <div class="note mini"><b>Este passo é no Mac mini.</b> A chave da IA não fica no GitHub, de propósito. Ela passa para o Air pela mesma conta Apple, sem criar arquivo.</div>
+        <ol class="sub">
+          <li>No Mac mini, abra o Terminal (<span class="k">Cmd</span> + <span class="k">Espaço</span>, <b>Terminal</b>).</li>
+          <li>Cole este comando e aperte <span class="k">Enter</span>. Não aparece nada: é normal. Abra esta página no Mac mini também, ou digite o comando.
+            <div class="cmd" style="margin-top:8px"><code id="c4">grep '^ANTHROPIC_API_KEY=' ~/Developer/learningos/.env | cut -d= -f2- | pbcopy</code><button class="copy" type="button" data-target="c4">Copiar</button></div>
+          </li>
+          <li>Volte ao Air e faça o passo 5 <b>logo em seguida</b> (em até 2 minutos).</li>
+        </ol>
+        <div class="note warn">Sem a chave, tudo funciona com IA simulada e dá para colocar a chave depois. Se não passar de um Mac para o outro, confira em Ajustes do Sistema, Geral, AirDrop e Handoff, se o Handoff está ligado nos dois.</div>
+        <div class="actions"><button class="btn primary done-btn" type="button">Concluí, próximo passo</button></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="4">
+      <button class="step-head" type="button" aria-expanded="false">
+        <span class="badge">5</span>
+        <span class="step-title"><h2>Baixar e instalar tudo</h2><span class="step-meta"><span class="dev air">MacBook Air</span> 15 a 30 minutos</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="step-body">
+        <p>Um comando só. Ele baixa o projeto, instala o que falta e liga o banco de dados.</p>
         <div class="cmd"><code id="c5">mkdir -p ~/Developer &amp;&amp; cd ~/Developer &amp;&amp; { [ -d learningos ] || gh repo clone castro-ai-labs/learningos; } &amp;&amp; cd learningos &amp;&amp; git pull --ff-only &amp;&amp; bash scripts/instalar-mac.sh</code><button class="copy" type="button" data-target="c5">Copiar</button></div>
-        <p>Ele mostra 7 etapas, cada item com <b>[ok]</b> quando fica pronto: Homebrew, ferramentas, Node, Supabase, pacotes do projeto, chaves e banco.</p></li>
-      <li><p>Na etapa 6 ele pede a chave: aperte <span class="k">Cmd</span> + <span class="k">V</span> e depois <span class="k">Enter</span>. A chave não aparece na tela, de propósito.</p></li>
-      <li><p>Na etapa 7 ele instala e abre o <b>Docker</b>. Na primeira vez, aceite os termos na janela do Docker (pode pular o cadastro). O script espera até 5 minutos o Docker ficar pronto.</p></li>
-      <li><p>No final aparece <b>PRONTO</b>. A instalação acabou.</p></li>
-    </ol>
-    <div class="note ok">Pode rodar o mesmo comando de novo quando quiser: o que já está pronto é pulado. Para só conferir, sem mudar nada: <span class="k">bash scripts/instalar-mac.sh --conferir</span></div>
+        <ol class="sub">
+          <li>Ele mostra 7 etapas, cada item com <b>[ok]</b> quando fica pronto.</li>
+          <li>Quando pedir a <b>chave da Anthropic</b>: <span class="k">Cmd</span> + <span class="k">V</span> e <span class="k">Enter</span>. A chave não aparece na tela.</li>
+          <li>Na última etapa ele instala e abre o <b>Docker</b>. Aceite os termos na janela dele (pode pular o cadastro). O script espera até 5 minutos.</li>
+          <li>Terminou quando aparecer <b>PRONTO</b>.</li>
+        </ol>
+        <div class="note warn">Se aparecer uma linha começando com <b>PAROU:</b>, ela diz o que fazer. Resolva e cole o mesmo comando de novo: o que já ficou pronto é pulado.</div>
+        <div class="actions"><button class="btn primary done-btn" type="button">Concluí, próximo passo</button></div>
+      </div>
+    </article>
+
+    <article class="step" data-step="5">
+      <button class="step-head" type="button" aria-expanded="false">
+        <span class="badge">6</span>
+        <span class="step-title"><h2>Ligar e usar o app</h2><span class="step-meta"><span class="dev air">MacBook Air</span> 2 minutos</span></span>
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="step-body">
+        <p>No mesmo Terminal, cole e aperte <span class="k">Enter</span>:</p>
+        <div class="cmd"><code id="c6">cd ~/Developer/learningos &amp;&amp; set -a &amp;&amp; source .env &amp;&amp; set +a &amp;&amp; ./scripts/demo.sh</code><button class="copy" type="button" data-target="c6">Copiar</button></div>
+        <p>Espere a frase <b>demo: abra http://localhost:3000</b>. Depois toque nos botões abaixo, nesta ordem:</p>
+        <div class="actions">
+          <a class="btn" href="http://localhost:3000" target="_blank" rel="noopener">Abrir o app</a>
+          <a class="btn" href="http://127.0.0.1:55424" target="_blank" rel="noopener">Caixa de e-mails de teste</a>
+        </div>
+        <ol class="sub">
+          <li>No app, clique em <b>Criar conta</b>.</li>
+          <li>Na caixa de e-mails de teste, abra <b>Confirme seu e-mail</b> e confirme.</li>
+          <li>Crie um espaço, envie seu material e peça para a IA preparar.</li>
+        </ol>
+        <div class="note ok">O app desliga sozinho em 2 horas (ou <span class="k">Ctrl</span> + <span class="k">C</span> no Terminal). Para ligar de novo outro dia: abra o Docker e repita só este passo.</div>
+        <div class="actions"><button class="btn primary done-btn" type="button">Concluí, tudo pronto</button></div>
+      </div>
+    </article>
+  </div>
+
+  <div class="finish" id="finish" role="status">
+    <h3>MacBook Air pronto</h3>
+    <p>O LearningOS agora roda nos dois Macs. Veja abaixo como continuar o projeto entre eles.</p>
+  </div>
+
+  <section class="block" aria-labelledby="sync">
+    <h2 id="sync">Continuar o projeto nos dois Macs e no celular</h2>
+    <details class="faq"><summary>Ao começar a trabalhar num Mac</summary><p>Abra o Claude Code na pasta do projeto e peça: "puxa as novidades do GitHub". Ele traz o que foi feito no outro Mac.</p></details>
+    <details class="faq"><summary>Ao terminar</summary><p>Peça: "salva no GitHub". Sem isso, o outro Mac não vê o que foi feito. Evite mexer no mesmo assunto nos dois Macs ao mesmo tempo.</p></details>
+    <details class="faq"><summary>Claude Code no MacBook Air</summary><p>Instale o seu kit de regras e skills pelo arquivo INSTALAR-NO-MAC-2.md do repositório meu-kit-claude. Assim o Air trabalha com as mesmas regras do Mac mini.</p></details>
+    <details class="faq"><summary>Pelo celular</summary><p>No app Claude, a aba Code trabalha direto no projeto do GitHub, na nuvem: dá para pedir mudanças e aprovar PRs. Ligar o app no celular não dá: ele precisa do Docker, que só roda no Mac.</p></details>
+    <details class="faq"><summary>O que não passa de um Mac para o outro</summary><p>As contas e materiais de teste (cada Mac tem o seu banco), a chave da IA (vai uma vez, no passo 4) e as anotações que o Claude guarda no Mac mini. Para ter os mesmos dados em todo lugar, o app precisa ser publicado na internet, decisão que ainda é sua.</p></details>
   </section>
 
-  <section aria-labelledby="usar">
-    <h2 id="usar"><span class="num">5</span>Usar o app no Air</h2>
-    <p>Daqui em diante é igual ao Mac mini: abra o Docker, ligue o app pelo Terminal e abra <b>localhost:3000</b>. O roteiro completo está no <a href="demonstracao.html">guia da demonstração</a>, a partir do passo 1.</p>
-    <div class="note warn">Cada Mac tem o <b>seu próprio banco</b>. A conta e os materiais que você criar no Air ficam só no Air; os do Mac mini, só no Mac mini. Para ter os mesmos dados nos dois e no celular, o app precisa ser publicado na internet, o que ainda depende da sua decisão sobre hospedagem e custo.</div>
+  <section class="block" aria-labelledby="erros">
+    <h2 id="erros">Se algo der errado</h2>
+    <details class="faq"><summary>"command not found: brew" ou "gh"</summary><p>Feche o Terminal (Cmd + Q), abra de novo e repita o comando. Se continuar, refaça o passo 2.</p></details>
+    <details class="faq"><summary>Pede senha do GitHub ou "Could not resolve to a Repository"</summary><p>O login do passo 3 não foi feito, ou foi com outra conta. Repita o passo 3.</p></details>
+    <details class="faq"><summary>"isso nao parece uma chave da Anthropic"</summary><p>A cópia do passo 4 não chegou. Refaça o passo 4 e cole o comando do passo 5 de novo. Nada foi gravado.</p></details>
+    <details class="faq"><summary>"o Docker nao ficou pronto"</summary><p>Abra o app Docker, aceite os termos e espere a baleia no alto da tela parar. Depois cole o comando do passo 5 de novo.</p></details>
+    <details class="faq"><summary>O mesmo erro apareceu duas vezes</summary><p>Pare e mande um print do Terminal para o Claude no Mac mini.</p></details>
   </section>
 
-  <section aria-labelledby="construir">
-    <h2 id="construir"><span class="num">6</span>Continuar construindo pelos dois Macs e pelo celular</h2>
-    <ol class="steps">
-      <li><p><b>Claude Code no Air:</b> instale o seu kit (skills, regras e proteções), pelo arquivo <b>INSTALAR-NO-MAC-2.md</b> do repositório meu-kit-claude. Assim o Air trabalha com as mesmas regras do Mac mini.</p></li>
-      <li><p><b>Ao começar</b> a trabalhar num Mac, abra o Claude Code na pasta do projeto e peça: <span class="say">"puxa as novidades do GitHub"</span>. Ele traz o que foi feito no outro Mac.</p></li>
-      <li><p><b>Ao terminar</b>, peça: <span class="say">"salva no GitHub"</span>. Sem isso, o outro Mac não vê o que foi feito.</p></li>
-      <li><p>Evite mexer no mesmo assunto nos dois Macs ao mesmo tempo. Termine e salve num, depois continue no outro.</p></li>
-      <li><p><b>No celular:</b> no app Claude, a aba <b>Code</b> trabalha direto no projeto do GitHub, na nuvem. Dá para pedir mudanças, acompanhar e aprovar os pacotes de mudança (PRs). O que não dá é ligar o app no celular: ele precisa do Docker, que só roda no Mac.</p></li>
-    </ol>
-    <div class="note warn">O que <b>não</b> passa sozinho de um Mac para o outro: o banco (contas e materiais), a chave da IA (passo 3) e as anotações que o Claude guarda sobre este projeto no Mac mini. As regras e decisões importantes já estão no próprio projeto, então o Air começa sabendo o essencial.</div>
-  </section>
-
-  <section aria-labelledby="problemas">
-    <h2 id="problemas">Se algo der errado</h2>
-    <div class="trouble-wrap">
-      <table class="trouble">
-        <thead><tr><th scope="col">O que aparece</th><th scope="col">O que fazer</th></tr></thead>
-        <tbody>
-          <tr><td>"command not found: brew" ou "gh"</td><td>Feche o Terminal (<span class="k">Cmd</span> + <span class="k">Q</span>), abra de novo e repita o comando. Se continuar, refaça o passo 1.</td></tr>
-          <tr><td>"Could not resolve to a Repository" ou pedido de senha do GitHub</td><td>O login do passo 2 não foi feito ou foi com outra conta. Rode <span class="k">gh auth login</span> de novo.</td></tr>
-          <tr><td>Uma linha começando com <b>PAROU:</b></td><td>O script explica o motivo nessa linha. Faça o que ela pede e rode o comando do passo 4 de novo.</td></tr>
-          <tr><td>"isso nao parece uma chave da Anthropic"</td><td>A cópia do passo 3 não chegou. Refaça o passo 3 e rode o passo 4 de novo. Nada foi gravado.</td></tr>
-          <tr><td>"o Docker nao ficou pronto"</td><td>Abra o app Docker, aceite os termos e espere a baleia no alto da tela parar. Depois rode o passo 4 de novo.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="note warn">Se o mesmo erro aparecer duas vezes, pare e me mande um print do Terminal.</div>
-  </section>
-
-  <footer>Script de instalação: scripts/instalar-mac.sh no projeto. Testado em 26/11/2026 numa cópia nova do projeto no Mac mini; no MacBook Air, este será o primeiro uso.</footer>
+  <footer>Script de instalação: scripts/instalar-mac.sh no projeto, testado no Mac mini em 26/11/2026. Esta é a primeira vez no MacBook Air.</footer>
 </div>
 
 <script>
 (function () {
+  var KEY = "instalar-air-v2";
+  var steps = Array.prototype.slice.call(document.querySelectorAll(".step"));
+  var done = [];
+  try { done = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { done = []; }
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
+  function open(i, scroll) {
+    steps.forEach(function (s, j) {
+      var on = j === i;
+      s.classList.toggle("open", on);
+      s.querySelector(".step-head").setAttribute("aria-expanded", on ? "true" : "false");
+    });
+    if (scroll && steps[i]) steps[i].scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+  function render() {
+    steps.forEach(function (s, j) { s.classList.toggle("done", done.indexOf(j) >= 0); });
+    var n = done.length;
+    document.getElementById("progLabel").textContent = n + " de " + steps.length + " passos";
+    document.getElementById("progFill").style.width = (n / steps.length * 100) + "%";
+    document.getElementById("finish").classList.toggle("show", n === steps.length);
+  }
+  steps.forEach(function (s, i) {
+    s.querySelector(".step-head").addEventListener("click", function () {
+      open(s.classList.contains("open") ? -1 : i, false);
+    });
+    s.querySelector(".done-btn").addEventListener("click", function () {
+      if (done.indexOf(i) < 0) done.push(i);
+      save(); render();
+      var next = -1;
+      for (var j = 0; j < steps.length; j++) { if (done.indexOf(j) < 0) { next = j; break; } }
+      if (next >= 0) open(next, true);
+      else { open(-1, false); document.getElementById("finish").scrollIntoView({ block: "center", behavior: "smooth" }); }
+    });
+  });
+  document.getElementById("reset").addEventListener("click", function () {
+    done = []; save(); render(); open(0, true);
+  });
   document.querySelectorAll(".copy").forEach(function (btn) {
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", function (ev) {
+      ev.stopPropagation();
       var el = document.getElementById(btn.dataset.target);
-      var text = el.textContent;
-      function done(label) { btn.textContent = label; setTimeout(function () { btn.textContent = "Copiar"; }, 1600); }
+      function show(label) { btn.textContent = label; btn.classList.add("ok"); setTimeout(function () { btn.textContent = "Copiar"; btn.classList.remove("ok"); }, 1800); }
       function selectIt() {
         var r = document.createRange(); r.selectNodeContents(el);
         var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        done("Selecionado");
+        show("Selecionado");
       }
-      try {
-        navigator.clipboard.writeText(text).then(function () { done("Copiado"); }, selectIt);
-      } catch (e) { selectIt(); }
+      try { navigator.clipboard.writeText(el.textContent).then(function () { show("Copiado"); }, selectIt); }
+      catch (e) { selectIt(); }
     });
   });
-  document.querySelectorAll(".check input").forEach(function (box) {
-    var key = "instalar-" + box.dataset.k;
-    try { box.checked = localStorage.getItem(key) === "1"; } catch (e) {}
-    box.addEventListener("change", function () {
-      try { localStorage.setItem(key, box.checked ? "1" : "0"); } catch (e) {}
-    });
-  });
+  render();
+  var first = 0;
+  for (var j = 0; j < steps.length; j++) { if (done.indexOf(j) < 0) { first = j; break; } }
+  open(done.length === steps.length ? -1 : first, false);
 })();
 </script>
 </body>
