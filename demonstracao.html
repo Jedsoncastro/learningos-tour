@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Demonstração do LearningOS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: uma coluna de leitura, passos numerados em ordem real, comandos em blocos com botão de copiar */
+:root {
+  --bg: #faf8f6;
+  --surface: #ffffff;
+  --fg: #23262b;
+  --muted: #5d6168;
+  --line: #ecdcd6;
+  --accent: #c0391b;
+  --accent-soft: #fbece7;
+  --code-bg: #1f2227;
+  --code-fg: #f1ede9;
+  --ok: #2f7a4b;
+  --ok-soft: #e6f3ea;
+  --warn: #9a5b00;
+  --warn-soft: #fdf3e2;
+  --font-display: "Poppins", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17191c; --surface: #202328; --fg: #ece8e4; --muted: #a8abb0; --line: #3a3330;
+    --accent: #f0714f; --accent-soft: #33221d; --code-bg: #0f1113; --code-fg: #f1ede9;
+    --ok: #6cc890; --ok-soft: #1d2c23; --warn: #f0b85c; --warn-soft: #2e2618;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17191c; --surface: #202328; --fg: #ece8e4; --muted: #a8abb0; --line: #3a3330;
+  --accent: #f0714f; --accent-soft: #33221d; --code-bg: #0f1113; --code-fg: #f1ede9;
+  --ok: #6cc890; --ok-soft: #1d2c23; --warn: #f0b85c; --warn-soft: #2e2618;
+  color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 760px; margin: 0 auto; padding-block: 40px 64px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: flex; flex-direction: column; gap: 40px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.35rem; display: flex; align-items: baseline; gap: 12px; }
+h3 { font-size: 1.05rem; }
+p { margin: 0; }
+.eyebrow { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.lead { color: var(--muted); max-width: 62ch; }
+header { display: flex; flex-direction: column; gap: 12px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-size: .85rem; padding: 4px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--fg); border: 1px solid var(--line); }
+section { display: flex; flex-direction: column; gap: 16px; }
+.num { font-family: var(--font-display); color: var(--accent); font-size: 1rem; min-width: 1.6em; }
+ol.steps { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; counter-reset: s; }
+ol.steps > li { counter-increment: s; display: grid; grid-template-columns: 2rem 1fr; gap: 4px 10px; }
+ol.steps > li::before { content: counter(s); grid-row: 1 / span 3; width: 1.7rem; height: 1.7rem; border-radius: 50%; background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: .85rem; display: grid; place-items: center; margin-top: 1px; }
+ol.steps > li > * { grid-column: 2; min-width: 0; }
+.k { font-family: var(--font-mono); font-size: .85em; padding: 1px 6px; border-radius: 5px; border: 1px solid var(--line); background: var(--surface); white-space: nowrap; }
+b, strong { font-weight: 600; }
+.ui { font-weight: 600; color: var(--accent); }
+.cmd { background: var(--code-bg); color: var(--code-fg); border-radius: 10px; display: flex; align-items: flex-start; gap: 10px; padding: 12px 12px 12px 16px; margin-top: 6px; }
+.cmd code { font-family: var(--font-mono); font-size: .88rem; flex: 1; min-width: 0; overflow-x: auto; white-space: pre; padding-block: 6px; }
+.copy { font: 600 .8rem var(--font-body); color: var(--code-fg); background: transparent; border: 1px solid #5b5f66; border-radius: 6px; padding: 6px 10px; cursor: pointer; flex-shrink: 0; }
+.copy:hover { border-color: var(--code-fg); }
+.copy:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.note { border-radius: 10px; padding: 12px 16px; font-size: .95rem; }
+.note.ok { background: var(--ok-soft); border-left: 4px solid var(--ok); }
+.note.warn { background: var(--warn-soft); border-left: 4px solid var(--warn); }
+.check { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.check label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.check input { margin-top: 5px; accent-color: var(--accent); width: 18px; height: 18px; flex-shrink: 0; }
+.check input:checked + span { color: var(--muted); text-decoration: line-through; }
+.trouble { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.trouble-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.trouble th, .trouble td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.trouble th { font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.trouble tr:last-child td { border-bottom: 0; }
+.trouble td:first-child { width: 42%; }
+.say { font-style: italic; color: var(--muted); }
+footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 16px; }
+@media (max-width: 520px) { h1 { font-size: 1.6rem; } .trouble td:first-child { width: auto; } }
+</style>
+
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}*{box-sizing:border-box}</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Roteiro para amanhã</span>
+    <h1>Demonstração do LearningOS</h1>
+    <p class="lead">Passo a passo para ligar o app no seu Mac e mostrar a um amigo, com a IA de verdade. Ensaiado em 25/11/2026: criar conta, confirmar e-mail, colar um texto e gerar resumo, cartões e questões funcionou do começo ao fim.</p>
+    <div class="facts">
+      <span class="chip">Uns 5 minutos para ligar</span>
+      <span class="chip">Roda só no seu Mac</span>
+      <span class="chip">Desliga sozinho em 2 horas</span>
+      <span class="chip">Trava de gasto: US$ 0,20 por pessoa/dia</span>
+    </div>
+  </header>
+
+  <section aria-labelledby="antes">
+    <h2 id="antes">Antes do seu amigo chegar</h2>
+    <div class="check" role="group" aria-label="Lista do que preparar">
+      <label><input type="checkbox" id="c1" data-k="c1"><span>Mac no carregador e conectado à internet (a IA precisa de internet).</span></label>
+      <label><input type="checkbox" id="c2" data-k="c2"><span>Um material escolhido: um PDF curto (5 a 15 páginas) de uma apostila sua, ou 2 a 4 parágrafos para colar. Nada com dados de paciente.</span></label>
+      <label><input type="checkbox" id="c3" data-k="c3"><span>O app já ligado (passos 1 a 3 abaixo) antes de começar a conversa. Assim não há espera na frente dele.</span></label>
+    </div>
+  </section>
+
+  <section aria-labelledby="docker">
+    <h2 id="docker"><span class="num">1</span>Abrir o Docker</h2>
+    <p class="lead">O Docker é um programa que liga, no seu Mac, o "banco de dados" e o login do app. Ele precisa estar aberto antes de tudo.</p>
+    <ol class="steps">
+      <li><p>Aperte <span class="k">Cmd</span> + <span class="k">Espaço</span>. Abre a busca do Mac (Spotlight).</p></li>
+      <li><p>Digite <b>Docker</b> e aperte <span class="k">Enter</span>.</p></li>
+      <li><p>Espere 1 a 2 minutos. No alto da tela, perto do relógio, aparece o ícone de uma <b>baleia</b>. Quando ela parar de se mexer, o Docker está pronto. Se a janela do Docker abrir, ela mostra <b>Engine running</b> no canto de baixo. Pode minimizar a janela, mas não feche o Docker.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="terminal">
+    <h2 id="terminal"><span class="num">2</span>Ligar o app pelo Terminal</h2>
+    <ol class="steps">
+      <li><p>Aperte <span class="k">Cmd</span> + <span class="k">Espaço</span>, digite <b>Terminal</b> e aperte <span class="k">Enter</span>.</p></li>
+      <li>
+        <p>Copie o primeiro comando, cole no Terminal (<span class="k">Cmd</span> + <span class="k">V</span>) e aperte <span class="k">Enter</span>. Ele liga o banco de dados.</p>
+        <div class="cmd"><code id="cmd1">cd ~/Developer/learningos &amp;&amp; gtimeout 600 supabase start</code><button class="copy" type="button" data-target="cmd1">Copiar</button></div>
+        <p>Espere aparecer um bloco grande de texto com <b>API_URL</b> e o cursor voltar. Leva de 30 segundos a 2 minutos.</p>
+      </li>
+      <li>
+        <p>Na mesma janela, copie e cole o segundo comando e aperte <span class="k">Enter</span>. Ele liga o app com a IA real.</p>
+        <div class="cmd"><code id="cmd2">set -a &amp;&amp; source .env &amp;&amp; set +a &amp;&amp; ./scripts/demo.sh</code><button class="copy" type="button" data-target="cmd2">Copiar</button></div>
+        <p>Espere aparecer esta frase:</p>
+        <div class="note ok">demo: abra http://localhost:3000 no navegador (IA: <b>anthropic</b>).</div>
+        <p>Se no fim estiver escrito <b>fake</b> em vez de <b>anthropic</b>, o app ligou com a IA de mentira. Ele funciona, mas gera textos genéricos. Veja a tabela de problemas no fim.</p>
+      </li>
+      <li><p><b>Deixe o Terminal aberto</b> durante toda a demonstração. Ele vai mostrar várias linhas passando; é normal.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="navegador">
+    <h2 id="navegador"><span class="num">3</span>Abrir o app no Chrome</h2>
+    <ol class="steps">
+      <li><p>No Chrome, digite na barra de endereço:</p>
+        <div class="cmd"><code id="url1">localhost:3000</code><button class="copy" type="button" data-target="url1">Copiar</button></div>
+      </li>
+      <li><p>A primeira página pode levar uns 10 segundos para abrir, porque o app monta as telas na primeira visita. Depois fica rápido.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="roteiro">
+    <h2 id="roteiro"><span class="num">4</span>Na frente do seu amigo</h2>
+
+    <h3>Criar a conta</h3>
+    <ol class="steps">
+      <li><p>Clique em <span class="ui">Criar conta</span>. Preencha um e-mail e uma senha. Pode ser qualquer e-mail: nesta versão de teste nenhum e-mail sai de verdade.</p></li>
+      <li><p>Marque a caixa <span class="ui">Tenho 18 anos ou mais...</span> e clique em <span class="ui">Criar conta</span>.</p></li>
+      <li><p>Abra uma aba nova (<span class="k">Cmd</span> + <span class="k">T</span>) e vá para a caixa de e-mails de teste:</p>
+        <div class="cmd"><code id="url2">localhost:55424</code><button class="copy" type="button" data-target="url2">Copiar</button></div>
+        <p>Clique no e-mail <b>Confirme seu e-mail no LearningOS</b>, depois no link dentro dele, e na tela que abrir clique em <span class="ui">Confirmar meu e-mail</span>. Você cai na tela <b>Hoje</b>.</p>
+        <p class="say">Para o amigo: "Quando o app estiver publicado, esse e-mail chega na caixa de entrada de verdade."</p>
+      </li>
+    </ol>
+
+    <h3>Criar um espaço e enviar o material</h3>
+    <ol class="steps">
+      <li><p>No menu de cima, clique em <span class="ui">Espaços</span>. Escreva o nome da matéria (por exemplo, Obstetrícia) e clique em <span class="ui">Criar espaço</span>.</p></li>
+      <li><p>Entre em <b>Materiais</b>. Na primeira vez aparece um aviso sobre o uso de IA: clique em <span class="ui">Entendi e aceito</span>.</p></li>
+      <li><p>Escolha um dos dois caminhos:</p>
+        <p><b>Enviar arquivo:</b> escolha o PDF, marque <span class="ui">Confirmo que tenho direito de usar este material...</span> e clique em <span class="ui">Enviar arquivo</span>.</p>
+        <p><b>Colar texto:</b> dê um título, cole o texto, marque a confirmação e clique em <span class="ui">Adicionar texto</span>.</p>
+      </li>
+      <li><p>Clique no nome do material. Em alguns segundos aparece <b>Pronto</b> e a lista de seções (o app divide o material em partes). Se ainda não apareceu, recarregue a página (<span class="k">Cmd</span> + <span class="k">R</span>).</p></li>
+    </ol>
+
+    <h3>Pedir para a IA preparar</h3>
+    <ol class="steps">
+      <li><p>A IA <b>não começa sozinha</b>. No quadro <b>Preparar todas as seções</b>, o app mostra o custo estimado antes. Clique no botão desse quadro que começa com <span class="ui">Preparar</span> (com uma seção só, ele se chama <span class="ui">Preparar a seção que falta</span>).</p></li>
+      <li><p>Espere. No ensaio, uma seção curta ficou pronta em menos de um minuto. Recarregue a página até aparecer <b>1 de 1 seção preparada</b> (ou o número total de seções).</p></li>
+    </ol>
+    <div class="note ok">Com PDF grande, o app prepara muitas seções e demora mais. Para a demonstração, um material curto é o melhor caminho.</div>
+
+    <h3>Mostrar o que a IA fez</h3>
+    <ol class="steps">
+      <li><p>Clique em <span class="ui">Parte 1</span>. Aparece o <b>Resumo</b>, em frases curtas.</p></li>
+      <li><p>Clique em <span class="ui">Ver trecho do material</span> embaixo de uma frase. <b>Este é o ponto forte para mostrar:</b> cada frase do resumo vem com o trecho exato do material de onde saiu. A IA não inventa.</p></li>
+      <li><p>Clique em <span class="ui">Ouvir o resumo</span> para o app ler em voz alta.</p></li>
+      <li><p>Clique em <span class="ui">Testar o que li</span> ou <span class="ui">Estudar esta seção</span> e responda algumas perguntas junto com ele. As questões têm 5 alternativas e comentário de cada uma.</p></li>
+      <li><p>Depois mostre o menu de cima: <span class="ui">Revisar</span> (o que você errou volta no dia certo), <span class="ui">Erros</span> e <span class="ui">Progresso</span>.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="desligar">
+    <h2 id="desligar"><span class="num">5</span>Desligar no final</h2>
+    <ol class="steps">
+      <li><p>No Terminal, aperte <span class="k">Ctrl</span> + <span class="k">C</span>. O app desliga. Se você esquecer, ele desliga sozinho em 2 horas.</p></li>
+      <li><p>Se quiser liberar memória do Mac, desligue também o banco de dados:</p>
+        <div class="cmd"><code id="cmd3">gtimeout 120 supabase stop</code><button class="copy" type="button" data-target="cmd3">Copiar</button></div>
+        <p>Depois feche o Docker (clique na baleia no alto da tela e em <b>Quit Docker Desktop</b>). Suas contas e materiais continuam guardados para a próxima vez.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="problemas">
+    <h2 id="problemas">Se algo der errado</h2>
+    <div class="trouble-wrap">
+      <table class="trouble">
+        <thead><tr><th scope="col">O que aparece</th><th scope="col">O que fazer</th></tr></thead>
+        <tbody>
+          <tr><td>"Supabase local fora do ar" ou "Cannot connect to the Docker daemon"</td><td>O Docker não está aberto ou ainda está ligando. Abra o Docker (passo 1), espere a baleia parar e rode o primeiro comando de novo.</td></tr>
+          <tr><td>"address already in use" ou "porta em uso"</td><td>O app já está ligado em outra janela do Terminal. Vá até ela e aperte <span class="k">Ctrl</span> + <span class="k">C</span>, ou feche todas as janelas do Terminal e comece do passo 2.</td></tr>
+          <tr><td>No fim da frase aparece "IA: fake"</td><td>O segundo comando foi digitado sem a parte <b>set -a &amp;&amp; source .env &amp;&amp; set +a</b>. Aperte <span class="k">Ctrl</span> + <span class="k">C</span> e copie o comando de novo com o botão.</td></tr>
+          <tr><td>O Chrome diz que não conseguiu abrir localhost:3000</td><td>O app ainda está ligando. Olhe o Terminal e espere a frase "demo: abra http://localhost:3000". Depois recarregue.</td></tr>
+          <tr><td>O e-mail de confirmação não aparece</td><td>Confira se abriu <b>localhost:55424</b> e recarregue a caixa. O e-mail chega em poucos segundos.</td></tr>
+          <tr><td>A preparação não avança ou avisa que passou do limite</td><td>A trava de gasto do dia foi atingida (US$ 0,20 por pessoa). Crie outra conta para o seu amigo, que tem o próprio limite, ou mostre uma seção que já está pronta.</td></tr>
+          <tr><td>Um selo redondo com "N" ou "1 Issue" no canto de baixo</td><td>É uma ferramenta do modo de teste, não aparece para alunos. Pode ignorar. Extensões do Chrome, como corretores de texto, às vezes fazem ele mostrar um aviso.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note warn">Se o mesmo erro aparecer duas vezes, não insista: mostre a prévia com as fotos das telas no celular dele, em <b>jedsoncastro.github.io/learningos-tour</b>, e me mande um print do Terminal depois.</div>
+  </section>
+
+  <section aria-labelledby="limites">
+    <h2 id="limites">Bom saber</h2>
+    <p>O app roda só no seu Mac: seu amigo não consegue abrir no celular dele. Para isso o app precisa ser publicado na internet, o que ainda depende da sua decisão sobre hospedagem e custo. As páginas de Termos e Privacidade aparecem como versão preliminar. Cada seção preparada custa uma fração de centavo de dólar.</p>
+  </section>
+
+  <footer>Roteiro testado no LearningOS em 25/11/2026, com a IA real (Claude Haiku 5.5) e a instrução nova das questões.</footer>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var el = document.getElementById(btn.dataset.target);
+      var text = el.textContent;
+      function done(label) { btn.textContent = label; setTimeout(function () { btn.textContent = "Copiar"; }, 1600); }
+      function selectIt() {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        done("Selecionado");
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { done("Copiado"); }, selectIt);
+      } catch (e) { selectIt(); }
+    });
+  });
+  document.querySelectorAll(".check input").forEach(function (box) {
+    var key = "demo-" + box.dataset.k;
+    try { box.checked = localStorage.getItem(key) === "1"; } catch (e) {}
+    box.addEventListener("change", function () {
+      try { localStorage.setItem(key, box.checked ? "1" : "0"); } catch (e) {}
+    });
+  });
+})();
+</script>
+</body>
+</html>
